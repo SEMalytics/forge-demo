@@ -134,9 +134,10 @@
                 <h1 class="big-emoji">🔴</h1>
                 <h2>Live Demo</h2>
                 <p style="font-size: 1.1em;">
-                    SQL Injection → Caught → Fixed → Passing
+                    5 Vulnerable Files → 12 Agents Review → Vote
                 </p>
-                <p class="dim" style="margin-top: 40px;">~45 seconds, zero human intervention</p>
+                <pre style="margin-top: 30px;"><code>forge review directory demos --pattern "*.py" --threshold 8</code></pre>
+                <p class="dim" style="margin-top: 20px;">Decision: REJECTED | 57 approve, 3 reject</p>
             </section>
 
             <!-- WHAT TO WATCH FOR -->
@@ -144,19 +145,18 @@
                 <h2>Watch For</h2>
                 <ol style="font-size: 0.9em; text-align: left; max-width: 700px; margin: 0 auto;">
                     <li style="margin: 15px 0;">
-                        <span class="blue">Structured diagnostic</span>
-                        <br><code>failure_type: SECURITY_VULNERABILITY</code>
+                        <span class="highlight">BLOCKING ISSUES</span>
+                        <br><code>[CRITICAL] secrets: Hardcoded secret detected</code>
+                        <br><code>[HIGH] sql: Potential SQL injection</code>
+                        <br><code>[HIGH] injection: Command injection via os.system()</code>
                     </li>
                     <li style="margin: 15px 0;">
-                        <span class="blue">Pattern match</span>
-                        <br><code>relevant_patterns: ["operations/security.md"]</code>
+                        <span class="blue">Vote Count</span>
+                        <br><code>57 approve, 3 reject → 8/12 threshold</code>
                     </li>
                     <li style="margin: 15px 0;">
-                        <span class="blue">Code fix</span>
-                        <br><code>f-string → parameterized query</code>
-                    </li>
-                    <li style="margin: 15px 0;">
-                        <span class="green">All tests pass</span>
+                        <span class="highlight">Decision: REJECTED</span>
+                        <br><span class="dim">Critical/High findings auto-veto</span>
                     </li>
                 </ol>
             </section>
