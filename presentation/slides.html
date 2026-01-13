@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forge: Multi-Agent Code Fixes</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/theme/black.min.css">
+    <style>
+        :root {
+            --r-background-color: #0d1117;
+            --r-main-color: #c9d1d9;
+            --r-heading-color: #58a6ff;
+            --r-link-color: #58a6ff;
+        }
+        .reveal h1, .reveal h2, .reveal h3 { text-transform: none; }
+        .reveal h1 { font-size: 2.5em; }
+        .reveal h2 { font-size: 1.8em; }
+        .reveal pre { font-size: 0.55em; width: 100%; }
+        .reveal code { background: #161b22; padding: 2px 8px; border-radius: 4px; }
+        .reveal pre code { padding: 16px; }
+        .highlight { color: #f85149; font-weight: bold; }
+        .green { color: #3fb950; }
+        .blue { color: #58a6ff; }
+        .yellow { color: #d29922; }
+        .dim { color: #6e7681; }
+        .stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 40px; }
+        .stat { text-align: center; }
+        .stat-number { font-size: 3em; font-weight: bold; color: #58a6ff; }
+        .stat-label { font-size: 0.8em; color: #8b949e; }
+        .architecture-box { 
+            background: #161b22; 
+            border: 1px solid #30363d; 
+            border-radius: 8px; 
+            padding: 20px; 
+            margin: 10px 0;
+        }
+        .demo-slide { background: linear-gradient(135deg, #0d1117 0%, #161b22 100%); }
+        .big-emoji { font-size: 4em; }
+        ul { list-style: none; }
+        ul li::before { content: "→ "; color: #58a6ff; }
+        .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; text-align: left; }
+        .logo { font-family: monospace; font-size: 1.2em; letter-spacing: 2px; }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+
+            <!-- TITLE -->
+            <section>
+                <h1>⚒️ Forge</h1>
+                <p style="font-size: 1.3em;">Multi-Agent Code Fixes</p>
+                <p class="dim" style="margin-top: 60px;">
+                    David Pedersen · AI Tinkerers Seattle · Jan 2026
+                </p>
+                <p class="dim" style="font-size: 0.7em;">
+                    github.com/SEMalytics/forge
+                </p>
+            </section>
+
+            <!-- THE PROBLEM -->
+            <section>
+                <h2>The Problem</h2>
+                <p style="font-size: 1.4em; margin: 40px 0;">
+                    AI code generation is <span class="highlight">fast</span> and <span class="highlight">wrong</span>
+                </p>
+                <ul style="font-size: 0.9em;">
+                    <li>No verification <span class="dim">— you verify</span></li>
+                    <li>No memory <span class="dim">— same mistakes, every time</span></li>
+                    <li>No self-repair <span class="dim">— can't diagnose failures</span></li>
+                    <li>No patterns <span class="dim">— proven fixes forgotten</span></li>
+                </ul>
+            </section>
+
+            <!-- THE SOLUTION -->
+            <section>
+                <h2>The Solution</h2>
+                <p style="font-size: 1.2em; margin: 30px 0;">
+                    <span class="green">Agents that fix their own mistakes</span>
+                </p>
+                <div class="architecture-box" style="font-size: 0.8em; font-family: monospace;">
+                    <span class="blue">Planning</span> → 
+                    <span class="blue">Decomposition</span> → 
+                    <span class="blue">Generation</span> → 
+                    <span class="blue">Testing</span> → 
+                    <span class="yellow">Review</span> → 
+                    <span class="green">Deploy</span>
+                    <br><br>
+                    <span class="dim">↓ failure</span><br>
+                    <span class="highlight">Diagnose → Pattern Match → Fix → Loop</span>
+                </div>
+            </section>
+
+            <!-- ARCHITECTURE -->
+            <section>
+                <h2>How It Works</h2>
+                <div class="two-col" style="font-size: 0.75em;">
+                    <div>
+                        <h3 class="blue" style="font-size: 1.2em;">12 Review Agents</h3>
+                        <p class="dim">Running in parallel:</p>
+                        <ul style="font-size: 0.85em;">
+                            <li>Security</li>
+                            <li>Performance</li>
+                            <li>Architecture</li>
+                            <li>Concurrency</li>
+                            <li>Data Validation</li>
+                            <li class="dim">...7 more</li>
+                        </ul>
+                        <p style="margin-top: 20px;">
+                            <span class="yellow">8/12 must approve</span><br>
+                            <span class="highlight">CRITICAL vetoes</span>
+                        </p>
+                    </div>
+                    <div>
+                        <h3 class="blue" style="font-size: 1.2em;">Pattern Matching</h3>
+                        <p class="dim">Hybrid search:</p>
+                        <ul style="font-size: 0.85em;">
+                            <li>16 failure types</li>
+                            <li>18 architecture patterns</li>
+                            <li>FTS5 + semantic search</li>
+                            <li>384-dim embeddings</li>
+                        </ul>
+                        <p style="margin-top: 20px;">
+                            <span class="green">Proven fixes</span><br>
+                            <span class="dim">not generated guesses</span>
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- DEMO -->
+            <section class="demo-slide">
+                <h1 class="big-emoji">🔴</h1>
+                <h2>Live Demo</h2>
+                <p style="font-size: 1.1em;">
+                    SQL Injection → Caught → Fixed → Passing
+                </p>
+                <p class="dim" style="margin-top: 40px;">~45 seconds, zero human intervention</p>
+            </section>
+
+            <!-- WHAT TO WATCH FOR -->
+            <section>
+                <h2>Watch For</h2>
+                <ol style="font-size: 0.9em; text-align: left; max-width: 700px; margin: 0 auto;">
+                    <li style="margin: 15px 0;">
+                        <span class="blue">Structured diagnostic</span>
+                        <br><code>failure_type: SECURITY_VULNERABILITY</code>
+                    </li>
+                    <li style="margin: 15px 0;">
+                        <span class="blue">Pattern match</span>
+                        <br><code>relevant_patterns: ["operations/security.md"]</code>
+                    </li>
+                    <li style="margin: 15px 0;">
+                        <span class="blue">Code fix</span>
+                        <br><code>f-string → parameterized query</code>
+                    </li>
+                    <li style="margin: 15px 0;">
+                        <span class="green">All tests pass</span>
+                    </li>
+                </ol>
+            </section>
+
+            <!-- KEY NUMBERS -->
+            <section>
+                <h2>By the Numbers</h2>
+                <div class="stat-grid">
+                    <div class="stat">
+                        <div class="stat-number">12</div>
+                        <div class="stat-label">Review Agents<br>(parallel)</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">16</div>
+                        <div class="stat-label">Failure Types<br>(structured)</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">18</div>
+                        <div class="stat-label">Architecture<br>Patterns</div>
+                    </div>
+                </div>
+                <p style="margin-top: 50px; font-size: 0.9em;">
+                    <span class="blue">Claude Opus 4.5</span> · 
+                    <span class="blue">Sentence Transformers</span> · 
+                    <span class="blue">SQLite</span> · 
+                    <span class="blue">Docker</span>
+                </p>
+            </section>
+
+            <!-- LINKS -->
+            <section>
+                <h2>Try It</h2>
+                <div style="font-size: 1.1em; margin: 40px 0;">
+                    <p>
+                        <span class="blue">Forge:</span><br>
+                        <code>github.com/SEMalytics/forge</code>
+                    </p>
+                    <p style="margin-top: 30px;">
+                        <span class="blue">These Demos:</span><br>
+                        <code>github.com/SEMalytics/forge-demo</code>
+                    </p>
+                </div>
+                <p style="margin-top: 50px; font-size: 1.3em;">Questions?</p>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            slideNumber: true,
+            controls: true,
+            progress: true,
+            center: true,
+            transition: 'fade',
+            transitionSpeed: 'fast'
+        });
+    </script>
+</body>
+</html>

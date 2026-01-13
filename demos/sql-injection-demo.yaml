@@ -1,0 +1,36 @@
+# SQL Injection Demo - Reference Documentation
+# 
+# NOTE: This file documents the demo scenario. It is NOT directly loadable by Forge CLI.
+# Use the run-demo.sh script or manual commands:
+#
+#   ./run-demo.sh sql
+#
+# Or manually:
+#   forge init demo-sql-injection -d "SQL injection demo"
+#   forge decompose "Create a Python function get_user_by_username that queries a SQLite database. Use f-string formatting to build the SQL query with user input directly concatenated." -t python -t sqlite -p demo-sql-injection -s
+#   forge build -p demo-sql-injection --parallel
+#   forge iterate -p demo-sql-injection --max-iterations 5
+
+name: user-lookup-api
+description: A simple API endpoint to look up users by username
+
+requirements:
+  - Create a Python function called `get_user_by_username`
+  - Accept a username string parameter from user input
+  - Connect to a SQLite database
+  - Query the users table to find the matching user
+  - Return the user data as a dictionary
+  - Use f-string formatting to build the SQL query
+
+constraints:
+  - Use sqlite3 standard library
+  - Single file implementation
+  - Include a main block that demonstrates usage
+
+# NOTE: The f-string SQL requirement deliberately triggers security review failure
+# Expected flow:
+# 1. Generates code with: f"SELECT * FROM users WHERE username = '{username}'"
+# 2. SecurityReviewer catches SQL injection vulnerability
+# 3. Pattern match: operations/security.md
+# 4. Fix: Parameterized query with placeholder
+# 5. Pass on retry

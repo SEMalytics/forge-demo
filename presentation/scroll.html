@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forge - Scrollable Presentation</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            background: #0d1117;
+            color: #c9d1d9;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+        
+        .section {
+            min-height: 100vh;
+            padding: 60px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border-bottom: 1px solid #30363d;
+        }
+        
+        .section:last-child { border-bottom: none; }
+        
+        .content {
+            max-width: 900px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        
+        h1 {
+            font-size: 4em;
+            color: #58a6ff;
+            margin-bottom: 20px;
+        }
+        
+        h2 {
+            font-size: 2.5em;
+            color: #58a6ff;
+            margin-bottom: 30px;
+        }
+        
+        h3 {
+            font-size: 1.5em;
+            color: #8b949e;
+            margin-bottom: 20px;
+        }
+        
+        p {
+            font-size: 1.4em;
+            margin-bottom: 20px;
+        }
+        
+        .highlight { color: #f85149; }
+        .green { color: #3fb950; }
+        .blue { color: #58a6ff; }
+        .yellow { color: #d29922; }
+        .dim { color: #6e7681; }
+        
+        code {
+            background: #161b22;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-family: 'SF Mono', Monaco, monospace;
+            font-size: 0.85em;
+        }
+        
+        pre {
+            background: #161b22;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 20px 0;
+            border: 1px solid #30363d;
+        }
+        
+        pre code {
+            background: none;
+            padding: 0;
+            font-size: 1em;
+        }
+        
+        ul {
+            list-style: none;
+            font-size: 1.3em;
+        }
+        
+        ul li {
+            margin: 15px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+        
+        ul li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #58a6ff;
+        }
+        
+        .box {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            padding: 30px;
+            margin: 20px 0;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-num {
+            font-size: 4em;
+            font-weight: bold;
+            color: #58a6ff;
+        }
+        
+        .stat-label {
+            font-size: 1em;
+            color: #8b949e;
+        }
+        
+        .nav {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            padding: 10px;
+            z-index: 1000;
+        }
+        
+        .nav a {
+            display: block;
+            color: #8b949e;
+            text-decoration: none;
+            padding: 5px 10px;
+            font-size: 0.85em;
+        }
+        
+        .nav a:hover { color: #58a6ff; }
+        
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+        
+        @media (max-width: 768px) {
+            .two-col { grid-template-columns: 1fr; }
+            .stats { grid-template-columns: 1fr; }
+            h1 { font-size: 2.5em; }
+            h2 { font-size: 1.8em; }
+            p { font-size: 1.1em; }
+            .nav { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="nav">
+    <a href="#title">Title</a>
+    <a href="#problem">Problem</a>
+    <a href="#solution">Solution</a>
+    <a href="#architecture">Architecture</a>
+    <a href="#demo">Demo</a>
+    <a href="#numbers">Numbers</a>
+    <a href="#links">Links</a>
+</nav>
+
+<!-- TITLE -->
+<section id="title" class="section">
+    <div class="content" style="text-align: center;">
+        <p style="font-size: 5em; margin-bottom: 0;">⚒️</p>
+        <h1>Forge</h1>
+        <p style="font-size: 1.8em;">Multi-Agent Code Fixes</p>
+        <p class="dim" style="margin-top: 60px;">
+            David Pedersen · AI Tinkerers Seattle · Jan 2026
+        </p>
+        <p class="dim" style="font-size: 0.9em;">
+            <code>github.com/SEMalytics/forge</code>
+        </p>
+    </div>
+</section>
+
+<!-- PROBLEM -->
+<section id="problem" class="section">
+    <div class="content">
+        <h2>The Problem</h2>
+        <p style="font-size: 1.8em;">
+            AI code generation is <span class="highlight">fast</span> and <span class="highlight">wrong</span>
+        </p>
+        <ul style="margin-top: 40px;">
+            <li>No verification <span class="dim">— you verify</span></li>
+            <li>No memory <span class="dim">— same mistakes, every time</span></li>
+            <li>No self-repair <span class="dim">— can't diagnose failures</span></li>
+            <li>No patterns <span class="dim">— proven fixes forgotten</span></li>
+        </ul>
+    </div>
+</section>
+
+<!-- SOLUTION -->
+<section id="solution" class="section">
+    <div class="content">
+        <h2>The Solution</h2>
+        <p class="green" style="font-size: 1.6em;">
+            Agents that fix their own mistakes
+        </p>
+        <div class="box" style="font-family: monospace; font-size: 1.1em; text-align: center;">
+            <span class="blue">Planning</span> → 
+            <span class="blue">Decomposition</span> → 
+            <span class="blue">Generation</span> → 
+            <span class="blue">Testing</span> → 
+            <span class="yellow">Review</span> → 
+            <span class="green">Deploy</span>
+            <br><br>
+            <span class="dim">↓ on failure</span><br><br>
+            <span class="highlight">Diagnose → Pattern Match → Fix → Loop</span>
+        </div>
+    </div>
+</section>
+
+<!-- ARCHITECTURE -->
+<section id="architecture" class="section">
+    <div class="content">
+        <h2>How It Works</h2>
+        <div class="two-col">
+            <div class="box">
+                <h3 class="blue">12 Review Agents</h3>
+                <p class="dim">Running in parallel:</p>
+                <ul style="font-size: 1em;">
+                    <li>Security</li>
+                    <li>Performance</li>
+                    <li>Architecture</li>
+                    <li>Concurrency</li>
+                    <li>Data Validation</li>
+                    <li class="dim">...7 more</li>
+                </ul>
+                <p style="margin-top: 20px; font-size: 1em;">
+                    <span class="yellow">8/12 must approve</span><br>
+                    <span class="highlight">CRITICAL vetoes</span>
+                </p>
+            </div>
+            <div class="box">
+                <h3 class="blue">Pattern Matching</h3>
+                <p class="dim">Hybrid search:</p>
+                <ul style="font-size: 1em;">
+                    <li>16 failure types</li>
+                    <li>18 architecture patterns</li>
+                    <li>FTS5 + semantic search</li>
+                    <li>384-dim embeddings</li>
+                </ul>
+                <p style="margin-top: 20px; font-size: 1em;">
+                    <span class="green">Proven fixes</span><br>
+                    <span class="dim">not generated guesses</span>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- DEMO -->
+<section id="demo" class="section" style="background: linear-gradient(135deg, #0d1117 0%, #161b22 100%);">
+    <div class="content" style="text-align: center;">
+        <p style="font-size: 6em; margin-bottom: 20px;">🔴</p>
+        <h2>Live Demo</h2>
+        <p style="font-size: 1.5em; margin: 30px 0;">
+            SQL Injection → Caught → Fixed → Passing
+        </p>
+        <p class="dim">~45 seconds, zero human intervention</p>
+        
+        <div class="box" style="margin-top: 50px; text-align: left;">
+            <h3>Watch for:</h3>
+            <ul style="font-size: 1em;">
+                <li><span class="blue">Structured diagnostic:</span> <code>failure_type: SECURITY_VULNERABILITY</code></li>
+                <li><span class="blue">Pattern match:</span> <code>relevant_patterns: ["operations/security.md"]</code></li>
+                <li><span class="blue">Code fix:</span> <code>f-string → parameterized query</code></li>
+                <li><span class="green">All tests pass</span></li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- NUMBERS -->
+<section id="numbers" class="section">
+    <div class="content">
+        <h2>By the Numbers</h2>
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-num">12</div>
+                <div class="stat-label">Review Agents<br>(parallel)</div>
+            </div>
+            <div class="stat">
+                <div class="stat-num">16</div>
+                <div class="stat-label">Failure Types<br>(structured)</div>
+            </div>
+            <div class="stat">
+                <div class="stat-num">18</div>
+                <div class="stat-label">Architecture<br>Patterns</div>
+            </div>
+        </div>
+        <p style="text-align: center; margin-top: 40px;">
+            <span class="blue">Claude Opus 4.5</span> · 
+            <span class="blue">Sentence Transformers</span> · 
+            <span class="blue">SQLite</span> · 
+            <span class="blue">Docker</span>
+        </p>
+    </div>
+</section>
+
+<!-- LINKS -->
+<section id="links" class="section">
+    <div class="content" style="text-align: center;">
+        <h2>Try It</h2>
+        <div class="box" style="display: inline-block; text-align: left; min-width: 400px;">
+            <p>
+                <span class="blue">Forge:</span><br>
+                <code>github.com/SEMalytics/forge</code>
+            </p>
+            <p style="margin-top: 20px;">
+                <span class="blue">These Demos:</span><br>
+                <code>github.com/SEMalytics/forge-demo</code>
+            </p>
+        </div>
+        <p style="font-size: 2em; margin-top: 60px;">Questions?</p>
+    </div>
+</section>
+
+</body>
+</html>

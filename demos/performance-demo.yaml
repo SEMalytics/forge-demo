@@ -1,0 +1,30 @@
+# O(n²) Performance Demo - Reference Documentation
+#
+# NOTE: This file documents the demo scenario. It is NOT directly loadable by Forge CLI.
+# Use: ./run-demo.sh perf
+
+name: duplicate-finder
+description: Find duplicate items in a list
+
+requirements:
+  - Create a Python function called `find_duplicates`
+  - Accept a list of items
+  - Return a list of items that appear more than once
+  - Use nested loops to compare each item with every other item
+  - Do NOT use sets or dictionaries for optimization
+
+constraints:
+  - Must use O(n²) nested loop approach
+  - Do not use collections.Counter
+  - Do not use set() for deduplication
+  - Compare each pair with a double for loop
+
+# NOTE: O(n²) when O(n) is possible with a set
+# Expected flow:
+# 1. Generates nested for loops checking item == other_item
+# 2. PerformanceReviewer catches O(n²) complexity
+# 3. Pattern match: core/architecture.md or operations/implementation.md
+# 4. Fix: Use set or dict for O(n) solution
+# 5. Pass on retry
+
+# DEMO TIP: Good for showing the PerformanceReviewer agent specifically

@@ -1,0 +1,29 @@
+# Forge project artifacts
+.forge/
+*.pyc
+__pycache__/
+
+# Demo project outputs
+demo-*/
+projects/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Python
+venv/
+.venv/
+*.egg-info/
+dist/
+build/
+
+# Logs
+*.log
+logs/

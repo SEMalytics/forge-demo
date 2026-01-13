@@ -1,0 +1,28 @@
+# Division by Zero Demo - Reference Documentation
+#
+# NOTE: This file documents the demo scenario. It is NOT directly loadable by Forge CLI.
+# Use: ./run-demo.sh div
+
+name: calculator-divide
+description: A division function for a calculator application
+
+requirements:
+  - Create a Python function called `divide`
+  - Accept two numeric parameters: numerator and denominator
+  - Return the result of division
+  - Do NOT include any input validation or error handling
+  - Keep the implementation minimal - just the division operation
+
+constraints:
+  - Single function, no classes
+  - No try/except blocks
+  - No input checking
+
+# NOTE: The "no validation" requirement deliberately triggers failure
+# Expected flow:
+# 1. Generates: return numerator / denominator
+# 2. QualityReviewer catches missing zero check
+# 3. Test fails with ZeroDivisionError
+# 4. Pattern match for input validation
+# 5. Fix: Add if denominator == 0 guard
+# 6. Pass on retry
